@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import HelloComponent from './components/HelloComponent';
+import Main from './components/MainComponent';
 
 class App extends Component {
   render() {
     return (
-      <HelloComponent name='Thuc Tran' />
+      <Main/>
     );
   }
 }
