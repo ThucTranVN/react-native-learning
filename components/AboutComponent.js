@@ -7,7 +7,12 @@ import { ScrollView } from 'react-native-virtualized-view';
 // Import UI components from react-native-elements library
 import { Card, ListItem, Avatar } from 'react-native-elements';
 // Import the leaders data from shared folder
-import { LEADERS } from '../shared/leaders';
+//import { LEADERS } from '../shared/leaders';
+import {baseUrl} from '../shared/baseUrl';
+import {connect} from 'react-redux';
+const mapStateToProps = (state) => ({
+  leaders: state.leaders
+});
 
 /**
  * RenderHistory Component
@@ -61,7 +66,7 @@ class RenderLeadership extends Component {
         {/* Container for avatar and content, arranged horizontally */}
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           {/* Circular avatar image for the leader */}
-          <Avatar rounded source={require('./images/profile-picture.png')} />
+          <Avatar rounded source={{uri: baseUrl + item.image}}/>
           <ListItem.Content>
             {/* Leader's name displayed in bold */}
             <ListItem.Title style={{ fontWeight: 'bold' }}>{item.name}</ListItem.Title>
@@ -86,9 +91,9 @@ class About extends Component {
   constructor(props) {
     super(props);
     // Initialize state with leaders data from shared folder
-    this.state = {
-      leaders: LEADERS
-    };
+    // this.state = {
+    //   leaders: LEADERS
+    // };
   }
   
   /**
@@ -101,9 +106,9 @@ class About extends Component {
         {/* Render the restaurant history section */}
         <RenderHistory />
         {/* Render the corporate leadership section, passing leaders data as prop */}
-        <RenderLeadership leaders={this.state.leaders} />
+        <RenderLeadership leaders={this.props.leaders.leaders} />
       </ScrollView>
     );
   }
 }
-export default About;
+export default connect(mapStateToProps)(About);

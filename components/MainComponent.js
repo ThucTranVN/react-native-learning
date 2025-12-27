@@ -10,6 +10,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // Import createDrawerNavigator and drawer content components for custom drawer implementation
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
+import { connect } from 'react-redux';
+import { fetchLeaders } from '../redux/ActionCreator';
+const mapDispatchToProps = (dispatch) => ({
+  fetchLeaders: () => dispatch(fetchLeaders())
+});
 
 // Import all screen components
 import Home from './HomeComponent';
@@ -264,5 +269,9 @@ class Main extends Component {
       </NavigationContainer>
     );
   }
+
+  componentDidMount() {
+    this.props.fetchLeaders();
+  }
 }
-export default Main;
+export default connect(null, mapDispatchToProps)(Main);

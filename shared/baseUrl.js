@@ -1,0 +1,1 @@
+export const baseUrl = 'https://confusion-server-9n37.onrender.com/';
