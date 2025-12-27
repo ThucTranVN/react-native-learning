@@ -137,7 +137,7 @@ class Dishdetail extends Component {
    */
   markFavorite(dishId) {
     this.setState({
-      // Add the dish to favorites array by concatenating a new object with the dishId
+      // Add the dish ID directly to favorites array (changed from object to primitive for simpler comparison)
       favorites: this.state.favorites.concat(dishId)
     });
   }
